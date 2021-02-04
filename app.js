@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use((req, res, next) => {
   res.locals.request = req;
-  res.locals.brandName = "<amirshayan/>";
   res.locals.lang = "en";
   next();
 });

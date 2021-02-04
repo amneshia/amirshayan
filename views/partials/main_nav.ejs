@@ -38,8 +38,9 @@ const href = (path1,path2) => {
 %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"><%= brandName %> </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="/"><img src="/images/logo.svg" class="img-fluid" style="max-height: 30px; ;filter: invert(96%) sepia(10%) saturate(177%) hue-rotate(252deg) brightness(108%) contrast(100%);"></img></a>
+      <button class="navbar-toggler" 
+              type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -51,7 +52,7 @@ const href = (path1,path2) => {
                     <%- n.title %>
                   </a>
                 </li>
-              <% }); %>
+              <% }) %>
         </ul>
       </div>
     </div>
