@@ -3,28 +3,38 @@
     {
       path : "/",
       title : "Home",
+      icon : ""
     },
     {
       path : "/services",
       title : "Services",
+      icon : ""
     },
     {
       path : "/projects",
       title : "Projects",
+      icon : ""
     },
     {
       path : "/about",
       title : "About Me",
+      icon : ""
     },
     {
       path : "/contact",
       title : "Contact Me",
+      icon : ""
     }
 ]; 
 
 const activityClass = (path1,path2) => {
   if (path1 === path2) {return "active";} else { return "";}; 
 }
+
+const href = (path1,path2) => {
+  if (path1 === path2) {return "#";} else { return path2;}; 
+}
+
 %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -36,7 +46,7 @@ const activityClass = (path1,path2) => {
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <% navItems.forEach(n => { %> 
                 <li class="nav-item">
-                  <a class="nav-link <%- activityClass (req.path, n.path) %>" aria-current="page" href="<%- n.path %>"><%- n.title %></a>
+                  <a class="nav-link <%- activityClass(request.path, n.path) %>" aria-current="page" href="<%- href(request.path, n.path) %>"><%- n.title %></a>
                 </li>
               <% }); %>
         </ul>
