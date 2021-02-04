@@ -3,27 +3,27 @@
     {
       path : "/",
       title : "Home",
-      icon : ""
+      icon : "fa-home"
     },
     {
       path : "/services",
       title : "Services",
-      icon : ""
+      icon : "fa-handshake"
     },
     {
       path : "/projects",
       title : "Projects",
-      icon : ""
+      icon : "fa-briefcase"
     },
     {
       path : "/about",
       title : "About Me",
-      icon : ""
+      icon : "fa-info-circle"
     },
     {
       path : "/contact",
       title : "Contact Me",
-      icon : ""
+      icon : "fa-envelope"
     }
 ]; 
 
@@ -46,7 +46,10 @@ const href = (path1,path2) => {
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <% navItems.forEach(n => { %> 
                 <li class="nav-item">
-                  <a class="nav-link <%- activityClass(request.path, n.path) %>" aria-current="page" href="<%- href(request.path, n.path) %>"><%- n.title %></a>
+                  <a class="nav-link <%- activityClass(request.path, n.path) %>" aria-current="page" href="<%- href(request.path, n.path) %>">
+                    <i class="fas fa-lg <%- n.icon %>"></i>
+                    <%- n.title %>
+                  </a>
                 </li>
               <% }); %>
         </ul>
