@@ -1,39 +1,32 @@
 const express = require('express');
+const ProjectRepo = require('../repositories/projectrepo');
+
 const router = express.Router();
 
 /* GET Home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { 
-    title: 'Home'
-  });
+  res.render('index', {});
 });
 
 /* GET Services page. */
 router.get('/services', (req, res, next) => {
-  res.render('services', { 
-    title: 'Services'
-  });
+  res.render('services', {});
 });
 
 /* GET Projects page. */
 router.get('/projects', (req, res, next) => {
-  res.render('projects', { 
-    title: 'Projects'
-  });
+  const projects = new ProjectRepo().projects();
+  res.render('projects', { projects: projects });
 });
 
 /* GET About Me page. */
 router.get('/about', (req, res, next) => {
-  res.render('about', { 
-    title: 'About Me'
-  });
+  res.render('about', {});
 });
 
 /* GET Contact page. */
 router.get('/contact', (req, res, next) => {
-  res.render('contact', { 
-    title: 'Contact Me' 
-  });
+  res.render('contact', {});
 });
 
 module.exports = router;
