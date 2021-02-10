@@ -1,5 +1,12 @@
-<%- include('partials/header',{title : "Services" }); %>
-<% const services=[ 
+<% 
+/**
+  Hear I represent all sericeses as records of 3 properties: 
+    1- Their title,
+    2- Their description,
+    3- Font-awsome icon's class
+  This way I am able to populate the service tiles inside a loop, thus eliminating templating duplication.
+*/
+const services=[ 
   { 
     title: "Consultation" ,
     description: "I can help regarding the questions you have about your stalled projects. I'm pretty confident that after years of dealing with various technologies, there are a few tips I can give you regarding your next course of action that saves you both money and time on the long run." , 
@@ -17,6 +24,7 @@
     } 
   ] 
 %>
+<%- include('partials/header',{title : "Services" }); %>
 <% include partials/main_nav %>
 <main>
   <div class="container">

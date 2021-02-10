@@ -1,4 +1,11 @@
 /*==================== 
+  @FILENAME : style.css
+  @AUTHOR   : Amir Shayan Armaghan
+  @StudendId: 301160315
+  @DATE     : 2/10/2021  
+====================== */
+
+/*==================== 
   Footer 
 ====================== */
 
@@ -13,7 +20,7 @@ footer ul{  padding-left: 0;  list-style: none;}
 .footer-copyright { color: #969696; margin: 2px 0 0;}
 
 /*==================== 
-  Widgets 
+  Footer Widgets 
 ====================== */
 .footer-widget{  padding: 20px;  margin-bottom: 40px;}
 .footer-widget.footer-widget-last{  margin-bottom: 0px;}
@@ -23,6 +30,9 @@ footer ul{  padding-left: 0;  list-style: none;}
 .footer-widget li a:hover{ color: #aaa;text-decoration: none;}
 .footer-widget-title {padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #4d4d4d;}
 
+/*==================== 
+  Round Image 
+====================== */
 .round-image {
   width: 100px;
   height: 100px;

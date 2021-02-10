@@ -2,6 +2,10 @@
   <% include partials/main_nav %>
     <main>
       <div class="container">
+        <!-- 
+          Projects are injected as the property "property" to the template. 
+          Using an EJS loop, I populate the page with one row representing a single projects.
+        -->
         <% projects.forEach(p=> { %>
           <div class="row shadow-lg m-3 bg-white rounded">
             <div class="col-lg-3 p-3 d-flex flex-column justify-content-center align-items-center">
