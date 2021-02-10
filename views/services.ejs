@@ -1,6 +1,43 @@
-<%- include('partials/header',{title : "Services"}); %>
+<%- include('partials/header',{title : "Services" }); %>
+<% const services=[ 
+  { 
+    title: "Consultation" ,
+    description: "I can help regarding the questions you have about your stalled projects. I'm pretty confident that after years of dealing with various technologies, there are a few tips I can give you regarding your next course of action that saves you both money and time on the long run." , 
+    icon: "fas fa-question" 
+    }, 
+  { 
+    title: "Android development",
+    description: "I have confidently developed industrial grade Android apps for over 2 years. I know the Android SDK, and am well adapted to current trends of Android app design & maintenance",
+    icon: "fab fa-android" 
+    }, 
+  { 
+    title: "Backend development",
+    description: "I am no stranger to distributed large scale, and fast delivering microservices. I know I can be a valueable asset in your backend's team.",
+    icon: "fas fa-server" 
+    } 
+  ] 
+%>
 <% include partials/main_nav %>
-  <main>
-
-  </main>
+<main>
+  <div class="container">
+    <div class="m-3">
+      <div class="row gx-3 gy-3">
+        <% services.forEach(s=> { %>
+          <div class="col-lg-4">
+            <div class="p-3 d-flex flex-column justify-content-top align-items-center shadow-lg border rounded h-100"
+              style="text-align: justify;">
+              <i class="fa-lg <%- s.icon %> mb-2"></i>
+              <h4 class="text-primary">
+                <%- s.title %>
+              </h4>
+              <p>
+                <%- s.description %>
+              </p>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+  </div>
+</main>
 <% include partials/footer %>
