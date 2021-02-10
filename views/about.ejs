@@ -1,6 +1,31 @@
-<%- include('partials/header',{title : "About Me"}); %>
-<% include partials/main_nav %>
-  <main>
-
-  </main>
-<% include partials/footer %>
+<%- include('partials/header',{title : "About Me" }); %>
+  <% include partials/main_nav %>
+    <main>
+      <div class="container">
+        <div class="shadow-lg m-3 bg-white rounded">
+          <div class="row p-5">
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
+              <div class="round-image"><img src="/images/my-image.jpg" class="rounded-circle" height="97"> </div>
+            </div>
+            <div class="col-md-9 d-flex flex-column justify-content-center">
+              <h5 class="card-title"><%- contactInfo.name %></h5>
+              <span class="card-subtitle"><%- contactInfo.jobTitle %></span>
+              <br />
+              <p class="card-text" style="text-align: justify;"><i>
+                "Hi! You may call me Shayan. I have had 2+ years of experience developing Android apps for the industry, and just as long doing
+                backend development. Although I have touched a lot of technologies in my years as both a learner and a developer, these days 
+                I prefer mainly to write for the backend using staticly typed and functional languages such has Haskell & Scala."
+              </i></p>
+            </div>
+          </div>
+          <div class="row p-3">
+            <div class="col-xs-12 d-flex flex-column justify-content-center align-items-center">
+              <span>Click <a href="/docs/resume.pdf" target="_blank" rel="noopener noreferrer">here</a> to receive a pdf version of my resume.</span>
+              <br/>
+              <span>Use <a href="/contact">this link</a> to fill out a contact form. I will try to respond ASAP.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <% include partials/footer %>

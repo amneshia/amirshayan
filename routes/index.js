@@ -29,4 +29,12 @@ router.get('/contact', (req, res, next) => {
   res.render('contact', {});
 });
 
+/* GET Contact page. */
+router.post('/contact', (req, res, next) => {
+  console.log(JSON.stringify(req.body));
+  res
+  .status(201)
+  .redirect(301, '/')
+});
+
 module.exports = router;
