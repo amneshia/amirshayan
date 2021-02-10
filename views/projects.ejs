@@ -1,6 +1,23 @@
-<%- include('partials/header',{title : "Projects"}); %>
-<% include partials/main_nav %>
-  <main>
-
-  </main>
-<% include partials/footer %>
+<%- include('partials/header',{title : "Projects" }); %>
+  <% include partials/main_nav %>
+    <main>
+      <div class="container">
+        <% projects.forEach(p=> { %>
+          <div class="row shadow-lg m-3 bg-white rounded">
+            <div class="col-lg-3 p-3 d-flex flex-column justify-content-center align-items-center">
+              <img src="<%- p.imgUrl %>" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-9 p-3 d-flex flex-column">
+              <h5 class="card-title text-primary">
+                <%- p.title %>
+              </h5>
+              <div><span style="font-weight: bold;">My role:</span>&nbsp;<span class="card-subtitle"><%- p.myRole %></span></div>
+              <div><span style="font-weight: bold;">Web address:</span>&nbsp;<a href="<%- p.webUrl %>" target="_blank" rel="noopener noreferrer"><%- p.webUrl %></a></div>
+              <br />
+              <p class="card-text" style="text-align: justify;"><%- p.description %></p>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </main>
+    <% include partials/footer %>
