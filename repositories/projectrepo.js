@@ -15,8 +15,8 @@ class ProjectRepo {
             ),
             new Project(
                 "purescript-rxjs",
-                `"purescript-rxjs" is the implementation of "Reactive Streams" in the "Purescript" language. The library allows writing 
-                 streaming pipelines and reactive software based based on functional 
+                `"purescript-rxjs" is the implementation of "Reactive Streams" in Purescript. The library allows writing 
+                 streaming pipelines and reactive software based on functional 
                  programming combinators in an expressive and declarative way.`,
                 "/images/purescript-rxjs.png",
                 "https://github.com/amneshia/purescript-rxjs",
