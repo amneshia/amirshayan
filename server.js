@@ -4,6 +4,9 @@
  * Module dependencies.
  */
 
+const configureMongoose = require('./config/mongoose');
+const db = configureMongoose();
+
 const app = require('./app');
 const debug = require('debug')('amirshayan:server');
 const http = require('http');

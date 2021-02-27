@@ -10,30 +10,29 @@
     {
       path : "/",
       title : "Home",
-      icon : "fa-home"
+      icon : "fas fa-home"
     },
     {
       path : "/services",
       title : "Services",
-      icon : "fa-handshake"
+      icon : "fas fa-handshake"
     },
     {
       path : "/projects",
       title : "Projects",
-      icon : "fa-briefcase"
+      icon : "fas fa-briefcase"
     },
     {
       path : "/about",
       title : "About Me",
-      icon : "fa-info-circle"
+      icon : "fas fa-info-circle"
     },
     {
       path : "/contact",
       title : "Contact Me",
-      icon : "fa-envelope"
-    }
-]; 
-
+      icon : "fas fa-envelope"
+    },
+];
 const activityClass = (path1,path2) => {
   if (path1 === path2) {return "active";} else { return "";}; 
 }
@@ -55,11 +54,25 @@ const href = (path1,path2) => {
               <% navItems.forEach(n => { %> 
                 <li class="nav-item">
                   <a class="nav-link <%- activityClass(request.path, n.path) %>" aria-current="page" href="<%- href(request.path, n.path) %>">
-                    <i class="fas fa-lg <%- n.icon %>"></i>
+                    <i class="fa-lg <%- n.icon %>"></i>
                     <%- n.title %>
                   </a>
                 </li>
               <% }) %>
+              <li class="nav-item">
+              <% if (/*userId === null*/ true) { %>
+                <a class="nav-link <%- activityClass(request.path, '/login') %>" aria-current="page" href="/login">
+                   <i class="fa-lg fas fa-sign-in-alt"></i>
+                   Login
+                   </a>
+              <% } else { %>
+                  //                   {
+    //   path : userId ? "/user/" + userId + "/contacts" : "/login",
+    //   title : userId ? "Login" : "Contacts",
+    //   icon : userId ? "" : "far fa-user-circle"
+    // }
+              <% } %>
+              </li>
         </ul>
       </div>
     </div>

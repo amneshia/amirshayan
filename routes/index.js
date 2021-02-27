@@ -3,38 +3,67 @@ const ProjectRepo = require('../repositories/projectrepo');
 
 const router = express.Router();
 
-/* GET Home page. */
+const userController = require('../controllers/user.controller');
+const contactController = require('../controllers/contact.controller');
+
 router.get('/', (req, res, next) => {
   res.render('index', {});
 });
 
-/* GET Services page. */
 router.get('/services', (req, res, next) => {
   res.render('services', {});
 });
 
-/* GET Projects page. */
 router.get('/projects', (req, res, next) => {
   const projects = new ProjectRepo().projects();
   res.render('projects', { projects: projects });
 });
 
-/* GET About Me page. */
 router.get('/about', (req, res, next) => {
   res.render('about', {});
 });
 
-/* GET Contact page. */
 router.get('/contact', (req, res, next) => {
   res.render('contact', {});
 });
 
-/* Post Contact page. */
 router.post('/contact', (req, res, next) => {
   console.log(JSON.stringify(req.body));
   res
   .status(201)
   .redirect(301, '/')
+});
+
+/* User CRUD routes */
+router.get('/signup', (req, res, next) => {
+  res.render("signup",{})
+});
+
+router.post('/signup', userController.create);
+
+router.get('/user/{userId}', contactController.index);
+
+/* User login route */
+router.get('/login', (req, res, next) => {
+  res.render('login', {});
+});
+
+router.post('/login', (req, res, next) => userController.login);
+
+//
+//  "Contacts" CRUD routes
+//
+
+router.get('/contacts/{contactId}', (req, res, next) => {
+  
+});
+
+router.put('/contacts/{contactId}', (req, res, next) => {
+  
+});
+
+router.delete('/contacts/{contactId}', (req, res, next) => {
+  
 });
 
 module.exports = router;
