@@ -1,10 +1,9 @@
 const express = require('express');
 const ProjectRepo = require('../repositories/projectrepo');
-
 const router = express.Router();
-
-const userController = require('../controllers/user.controller');
-const contactController = require('../controllers/contact.controller');
+const secured = require("../middleware/middlewares").secured;
+const userController = require('../controllers/user');
+const contactController = require('../controllers/contact');
 
 router.get('/', (req, res, next) => {
   res.render('index', {});
@@ -41,29 +40,23 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', userController.create);
 
-router.get('/user/{userId}', contactController.index);
-
-/* User login route */
+/* Authentication routes */
 router.get('/login', (req, res, next) => {
-  res.render('login', {});
+  res.render('login', {redirectURL : req.query.redirectURL});
 });
 
-router.post('/login', (req, res, next) => userController.login);
+router.post('/login', userController.login);
 
-//
-//  "Contacts" CRUD routes
-//
+router.post('/logout', userController.logout);
 
-router.get('/contacts/{contactId}', (req, res, next) => {
-  
-});
+/*  "Contacts" CRUD routes */
 
-router.put('/contacts/{contactId}', (req, res, next) => {
-  
-});
+router.get('/contacts',secured, contactController.index);
 
-router.delete('/contacts/{contactId}', (req, res, next) => {
-  
-});
+router.get('/contacts/{contactId}', secured, contactController.find);
+
+router.put('/contacts/{contactId}', secured, contactController.update);
+
+router.delete('/contacts/{contactId}', secured, contactController.delete);
 
 module.exports = router;

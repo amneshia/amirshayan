@@ -51,6 +51,25 @@ const href = (path1,path2) => {
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <% if (!request.user) { %>
+            <li class="nav-item">
+            <a class="nav-link <%- activityClass(request.path, '/login') %>" aria-current="page" href="/login">
+               <i class="fa-lg fas fa-sign-in-alt"></i>
+               Login
+               </a>
+              </li>   
+          <% } else { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%- request.user.username %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/contacts">Contacts</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><form class="dropdown-item" action="/logout" method="post"><input class="link-like" value="Logout" type="submit"></input></form></li>
+              </ul>
+            </li>
+          <% } %>
               <% navItems.forEach(n => { %> 
                 <li class="nav-item">
                   <a class="nav-link <%- activityClass(request.path, n.path) %>" aria-current="page" href="<%- href(request.path, n.path) %>">
@@ -59,20 +78,6 @@ const href = (path1,path2) => {
                   </a>
                 </li>
               <% }) %>
-              <li class="nav-item">
-              <% if (/*userId === null*/ true) { %>
-                <a class="nav-link <%- activityClass(request.path, '/login') %>" aria-current="page" href="/login">
-                   <i class="fa-lg fas fa-sign-in-alt"></i>
-                   Login
-                   </a>
-              <% } else { %>
-                  //                   {
-    //   path : userId ? "/user/" + userId + "/contacts" : "/login",
-    //   title : userId ? "Login" : "Contacts",
-    //   icon : userId ? "" : "far fa-user-circle"
-    // }
-              <% } %>
-              </li>
         </ul>
       </div>
     </div>

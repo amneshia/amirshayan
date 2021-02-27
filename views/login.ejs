@@ -15,6 +15,9 @@
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="password" name="password"></textarea>
                 </div>
+                <% if (redirectURL) { %>
+                  <input type="hidden" name="redirectURL" id="redirectURL" value="<%- redirectURL %>">
+                <% } %>  
                 <div class="d-flex justify-content-center gap-2 d-block">
                   <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
