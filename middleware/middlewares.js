@@ -24,5 +24,8 @@ exports.globalLocals = (req, res, next) => {
         linkedin: "https://www.linkedin.com/in/amir-shayan-armaghan-6019b488/",
         facebook: "https://www.facebook.com/amirshayan",
     }
+    res.locals.syncMessages = () => {
+        
+    };
     next();
 };

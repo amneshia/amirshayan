@@ -53,10 +53,10 @@ router.post('/logout', userController.logout);
 
 router.get('/contacts',secured, contactController.index);
 
-router.get('/contacts/{contactId}', secured, contactController.find);
+router.get('/contacts/:contactId', secured, contactController.find);
 
-router.put('/contacts/{contactId}', secured, contactController.update);
+router.put('/contacts/:contactId', secured, contactController.update);
 
-router.delete('/contacts/{contactId}', secured, contactController.delete);
+router.delete('/contacts/:contactId', secured, contactController.delete);
 
 module.exports = router;

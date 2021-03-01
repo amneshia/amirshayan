@@ -8,18 +8,20 @@ const indexRouter = require('./routes/index');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('mongoose').model('User');
-const app = express();
+const flash = require("connect-flash");
 const globalLocals = require("./middleware/middlewares").globalLocals;
 
+const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(session({ secret: "cats" }));
 app.use(express.urlencoded({ extended: false }));
+app.use(session({ secret: "cats"}));
 app.use(cookieParser());
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
@@ -45,7 +47,6 @@ passport.use(new LocalStrategy(
 
 app.use(globalLocals);
 app.use('/', indexRouter);
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
