@@ -1,0 +1,18 @@
+<%- include('partials/header',{title : "Create Contact" }); %>
+  <% include partials/main_nav %>
+    <main>
+      <div class="container">
+        <div class="row p-5 justify-content-center">
+          <div class="col-lg-4 shadow-lg bg-white rounded">
+            <div class="p-3">
+              <h3>Create new contact</h3>
+              <% const form = request.flash("form")[0] %>
+              <%- 
+              include('partials/contact_form',{method: "POST",action : "/contacts",form : form}) 
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <% include partials/footer %>

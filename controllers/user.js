@@ -1,6 +1,7 @@
 const { body, validationResult, checkSchema } = require('express-validator');
-const User = require('mongoose').model('User');
-const Contact = require('mongoose').model('Contact');
+const Mongoose = require("mongoose");
+const User = Mongoose.model('User');
+const Contact = Mongoose.model('Contact');
 const passport = require('passport');
 const myContactInfo = require("../models/my-contact-info");
 
@@ -9,7 +10,6 @@ exports.create = [
         password: {
             isLength: {
                 errorMessage: 'Password must be at least 6 characters long.',
-                // Multiple options would be expressed as an array
                 options: { min: 6 },
             },
         },
@@ -19,17 +19,17 @@ exports.create = [
             },
             isLength: {
                 errorMessage: 'Username must be at least 3 characters long.',
-                // Multiple options would be expressed as an array
                 options: { min: 3 },
             },
             isUppercase: {
-                errorMessage: 'Username must be in lower-case.',
-                // To negate a validator
                 negated: true,
             }
         },
-        // Support bail functionality in schemas
         email: {
+            isUppercase: {
+                errorMessage: 'Email must be in lower-case.',
+                negated: true,
+            },
             isEmail: {
                 errorMessage: 'Please provide a valid email address',
             },

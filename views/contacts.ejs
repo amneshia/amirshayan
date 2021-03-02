@@ -1,54 +1,66 @@
-<%- include('partials/header',{title : "Projects" }); %>
+<%- include('partials/header',{title : "Contacts" }); %>
   <% include partials/main_nav %>
     <main>
       <div class="container">
         <div class="shadow-lg m-3 bg-white rounded">
-          <div class="table-responsive p-3">
-            <table class="table table-sm table-hover align-middle">
-              <thead>
-                <tr>
-                  <th class="text-nowrap" scope="col">Name</th>
-                  <th class="text-nowrap" scope="col">Email</th>
-                  <th class="text-nowrap" scope="col" colspan="3">Phone</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- 
-                Contacts are injected as the property "contacts" to the template. 
-                Using an EJS loop, I populate the page with one row representing a single contact.
-                -->
-                <tr>
-                  <% contacts.forEach(contact=> { %>
-                    <td class="text-nowrap">
-                      <%- contact.name %>
-                    </td>
-                    <td class="text-nowrap"><a class="text-decoration-none" href="mailto:<%- contact.email %>">
-                        <%- contact.email %>
-                      </a></td>
-                    <td class="text-nowrap"><a class="text-decoration-none" href="tel:<%- contact.phone %>">
-                        <%- contact.phone %>
-                      </a></td>
-                    <td class="text-nowrap">
-                      <form method="GET" action="/contacts/<%- contact._id %>"
-                        enctype="application/x-www-form-urlencoded" />
-                      <button type="submit" class="link-like text-decoration-none">
-                        <i class="fa-lg fas fa-edit"></i>
-                      </button>
-                      </form>
-                    </td>
-                    <td class="text-nowrap">
-                      <form method="POST" action="/contacts/<%- contact._id %>"
-                        enctype="application/x-www-form-urlencoded" />
-                      <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="link-like text-decoration-none">
-                        <i class="fa-lg fas fa-trash-alt"></i>
-                      </button>
-                      </form>
-                    </td>
-                    <% }) %>
-                </tr>
-              </tbody>
-            </table>
+          <div class="p-5">
+            <h3>Your contacts</h3>
+            <div class="table-responsive">
+              <table class="table table-sm table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th class="text-nowrap" scope="col">Name</th>
+                    <th class="text-nowrap" scope="col">Email</th>
+                    <th class="text-nowrap" scope="col" colspan="3">Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 
+                  Contacts are injected as the property "contacts" to the template. 
+                  Using an EJS loop, I populate the page with one row representing a single contact.
+                  -->
+                  <% 
+                  contacts
+                  //Alphabetically sort the contacts as per the requirement of the project
+                  .sort((a, b) => (a.name < b.name) ? -1 : 1)
+                  .forEach(contact=> { 
+                    %>
+                    <tr>
+                      <td class="text-nowrap">
+                        <%- contact.name %>
+                      </td>
+                      <td class="text-nowrap"><a class="text-decoration-none" href="mailto:<%- contact.email %>">
+                          <%- contact.email %>
+                        </a></td>
+                      <td class="text-nowrap"><a class="text-decoration-none" href="tel:<%- contact.phone %>">
+                          <%- contact.phone %>
+                        </a></td>
+                      <td class="text-nowrap">
+                        <form method="GET" action="/contacts/<%- contact._id %>"
+                          enctype="application/x-www-form-urlencoded" />
+                        <button type="submit" class="link-like text-decoration-none">
+                          <i class="fa-lg fas fa-edit"></i>
+                        </button>
+                        </form>
+                      </td>
+                      <td class="text-nowrap">
+                        <form method="POST" action="/contacts/<%- contact._id %>"
+                          enctype="application/x-www-form-urlencoded" />
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="link-like text-decoration-none">
+                          <i class="fa-lg fas fa-trash-alt"></i>
+                        </button>
+                        </form>
+                      </td>
+                    </tr>
+                      <% }) %>
+                </tbody>
+              </table>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center gap-2 d-block">
+              <a href="/contacts/new" class="btn btn-primary btn-block">Create new contact</a>
+            </div>            
           </div>
         </div>
       </div>

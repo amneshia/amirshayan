@@ -1,0 +1,19 @@
+<form method="POST" action="<%- action %>" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="_method" value="<%- method %>">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%- (form && form.name) ? form.name : "" %>" >
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="<%- (form && form.email) ? form.email : "" %>" >
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" value="<%- (form && form.phone) ? form.phone : "" %>" >
+    </div>
+    <div class="d-flex justify-content-center gap-2 d-block">
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        <a href="/contacts" class="btn btn-secondary btn-block">Cancel</a>
+    </div>
+</form>

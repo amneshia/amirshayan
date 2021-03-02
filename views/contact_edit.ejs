@@ -1,8 +1,27 @@
-<%- include('partials/header',{title : "Projects" }); %>
+<%- include('partials/header',{title : "Edit Contact" }); %>
   <% include partials/main_nav %>
     <main>
       <div class="container">
-      
+        <div class="row p-5 justify-content-center">
+          <div class="col-lg-4 shadow-lg bg-white rounded">
+            <div class="p-3">
+              <h3>Edit contact</h3>
+              <% 
+                const flash=request.flash("form")[0]; 
+                const form=(flash && flash.length !==0) ? flash : contact; %>
+                <%- include('partials/contact_form',{method: "PUT" ,action : "/contacts/" + contact._id, form : form});
+                  %>
+                  <br>
+                  <div class="d-flex justify-content-center gap-2 d-block">
+                    <form method="POST" action="/contacts/<%- contact._id %>"
+                      enctype="application/x-www-form-urlencoded" />
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                    </form>
+                  </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <% include partials/footer %>
