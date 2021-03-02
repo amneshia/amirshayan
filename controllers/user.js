@@ -57,7 +57,7 @@ exports.create = [
             const dbErrors = usernameCheck.concat(emailCheck);
             if (dbErrors.length === 0) {
                 // Create the user along with me as their first contact.
-                await new User(req.body).save()
+                return await new User(req.body).save()
                 .then(user => {
                     return new Contact({
                         userId: user._id,

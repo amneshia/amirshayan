@@ -2,13 +2,55 @@
   <% include partials/main_nav %>
     <main>
       <div class="container">
-        <!-- 
-          Projects are injected as the property "property" to the template. 
-          Using an EJS loop, I populate the page with one row representing a single project.
-        -->
-        <% projects.forEach(p=> { %>
-
-        <% }) %>
+        <div class="shadow-lg m-3 bg-white rounded">
+          <div class="table-responsive p-3">
+            <table class="table table-sm table-hover align-middle">
+              <thead>
+                <tr>
+                  <th class="text-nowrap" scope="col">Name</th>
+                  <th class="text-nowrap" scope="col">Email</th>
+                  <th class="text-nowrap" scope="col" colspan="3">Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 
+                Contacts are injected as the property "contacts" to the template. 
+                Using an EJS loop, I populate the page with one row representing a single contact.
+                -->
+                <tr>
+                  <% contacts.forEach(contact=> { %>
+                    <td class="text-nowrap">
+                      <%- contact.name %>
+                    </td>
+                    <td class="text-nowrap"><a class="text-decoration-none" href="mailto:<%- contact.email %>">
+                        <%- contact.email %>
+                      </a></td>
+                    <td class="text-nowrap"><a class="text-decoration-none" href="tel:<%- contact.phone %>">
+                        <%- contact.phone %>
+                      </a></td>
+                    <td class="text-nowrap">
+                      <form method="GET" action="/contacts/<%- contact._id %>"
+                        enctype="application/x-www-form-urlencoded" />
+                      <button type="submit" class="link-like text-decoration-none">
+                        <i class="fa-lg fas fa-edit"></i>
+                      </button>
+                      </form>
+                    </td>
+                    <td class="text-nowrap">
+                      <form method="POST" action="/contacts/<%- contact._id %>"
+                        enctype="application/x-www-form-urlencoded" />
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button type="submit" class="link-like text-decoration-none">
+                        <i class="fa-lg fas fa-trash-alt"></i>
+                      </button>
+                      </form>
+                    </td>
+                    <% }) %>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </main>
     <% include partials/footer %>

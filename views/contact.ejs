@@ -12,7 +12,7 @@
               <p>
                 Alternatively, you may directly send me an email via: <a href="mailto:<%- contactInfo.email %>"><%- contactInfo.email %></a>
               </p>
-              <form method="POST" action="/contact">
+              <form method="POST" action="/contact" enctype="application/x-www-form-urlencoded">
                 <div class="mb-3">
                   <label for="email" class="form-label">Your email</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">

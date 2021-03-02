@@ -9,7 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('mongoose').model('User');
 const flash = require("connect-flash");
-const globalLocals = require("./middleware/middlewares").globalLocals;
+const {methodOverride, globalLocals} = require("./middleware/middlewares");
 
 const app = express();
 // view engine setup
@@ -19,7 +19,8 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({ secret: "cats"}));
+app.use(methodOverride);
+app.use(session({ secret: "cats" }));
 app.use(cookieParser());
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,14 +29,14 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 // Passport setup
 app.use(passport.initialize());
 app.use(passport.session());
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user);
 });
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 passport.use(new LocalStrategy(
-  function(username, password, done) {
+  function (username, password, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
