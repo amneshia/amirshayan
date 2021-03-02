@@ -53,7 +53,11 @@ router.post('/logout', userController.logout);
 
 router.get('/contacts',secured, contactController.index);
 
-router.get('/contacts/:contactId', secured, contactController.find);
+router.get('/contacts/new',secured, contactController.new);
+
+router.post('/contacts',secured, contactController.create);
+
+router.get('/contacts/:contactId', secured, contactController.edit);
 
 router.put('/contacts/:contactId', secured, contactController.update);
 

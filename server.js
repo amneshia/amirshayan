@@ -5,7 +5,7 @@
  */
 
 const configureMongoose = require('./config/mongoose')();
-const configurePassport = require('./config/passport')();
+
 const app = require('./app');
 const debug = require('debug')('amirshayan:server');
 const http = require('http');

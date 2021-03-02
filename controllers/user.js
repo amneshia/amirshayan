@@ -1,6 +1,8 @@
 const { body, validationResult, checkSchema } = require('express-validator');
 const User = require('mongoose').model('User');
+const Contact = require('mongoose').model('Contact');
 const passport = require('passport');
+const myContactInfo = require("../models/my-contact-info");
 
 exports.create = [
     checkSchema({
@@ -49,30 +51,23 @@ exports.create = [
             res.status(400).redirect("/signup");
         } else {
             const usernameCheck = await User.exists({ username: req.body.username })
-                .then(exists => {
-                    if (exists) {
-                        return ["A user with that username already exists."];
-                    } else {
-                        return [];
-                    }
-                });
+                .then(exists => exists ? ["A user with that username already exists."] : []);
             const emailCheck = await User.exists({ email: req.body.email })
-                .then(exists => {
-                    if (exists) {
-                        return ["A user with that email already exists."];
-                    } else {
-                        return [];
-                    }
-                });
+                .then(exists => exists ? ["A user with that email already exists."] : []);
             const dbErrors = usernameCheck.concat(emailCheck);
             if (dbErrors.length === 0) {
-                new User(req.body).save(err => {
-                    if (err) {
-                        return next(err);
-                    } else {
-                        res.status(201).redirect("/login");
-                    }
-                });
+                // Create the user along with me as their first contact.
+                await new User(req.body).save()
+                .then(user => {
+                    return new Contact({
+                        userId: user._id,
+                        name: myContactInfo.name,
+                        email: myContactInfo.email,
+                        phone: myContactInfo.phone
+                    }).save();
+                })
+                .then(_ => res.status(201).redirect("/login"))
+                .catch(next);
             } else {
                 req.flash("error", dbErrors);
                 req.flash("form", req.body);

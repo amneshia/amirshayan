@@ -1,0 +1,14 @@
+<%- include('partials/header',{title : "Projects" }); %>
+  <% include partials/main_nav %>
+    <main>
+      <div class="container">
+        <!-- 
+          Projects are injected as the property "property" to the template. 
+          Using an EJS loop, I populate the page with one row representing a single project.
+        -->
+        <% projects.forEach(p=> { %>
+
+        <% }) %>
+      </div>
+    </main>
+    <% include partials/footer %>
