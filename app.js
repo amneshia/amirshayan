@@ -1,15 +1,15 @@
 const createError = require('http-errors');
 const express = require('express');
-const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const indexRouter = require('./routes/index');
 //New additions since last presentation
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 const User = require('mongoose').model('User');
 const flash = require("connect-flash");
-const LocalStrategy = require('passport-local').Strategy;
 const {methodOverride, globalLocals} = require("./middleware/middlewares");
 
 const app = express();
